@@ -1,1 +1,38 @@
-<h1>zxczxc</h1>
+<div class="page-header">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<ul class="page-header-breadcrumb">
+								<li><a href="index.html">Trang chủ</a></li>
+								<li><%= @post.title%></li>
+							</ul>
+							<h1><%= @post.title %></h1>
+                            
+						</div>
+					</div>
+				</div>
+</div>
+
+<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+                        <p class="text-center">
+                            <img src="<%= @post.image %>" class="img-responsive" style="display:inline-block"/>
+                        </p>
+						
+                        <p class="post_content">
+                            <%= @post.content%>
+                        </p>
+
+                        <p class="pull-right">
+                            <b>Admin</b>
+                        </p>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
