@@ -1,0 +1,54 @@
+.post-img {
+    position: relative;
+    overflow: hidden;
+}
+.new_posts .post-body {
+    background: #0000007a;
+}
+.post-img:before {
+    content: '';
+    display: block;
+    padding-top: 60%;
+}
+
+.post-img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+.post.post-thumb {
+    overflow: hidden;
+}
+.post-title a{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    word-wrap: break-word;
+    height: 50px;
+}
+.recent .post-title a{
+    height: 40px;
+}
+
+.post .post-meta {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+.post.post-thumb .post-title > a{
+    transition: all 0.5s;
+}
+.post.post-thumb .post-title > a:hover{
+    text-decoration: none;
+    color: #69b74f;
+}
+
+/* POST SINGLE */
+.post_content{
+    text-align: justify;
+    line-height: 1.5;
+}
