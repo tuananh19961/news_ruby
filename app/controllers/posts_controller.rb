@@ -1,11 +1,11 @@
-class PostController < ApplicationController
-before_action :set_user, only: [:edit]
+class PostsController < ApplicationController
+before_action :set_post, only: [:show,:edit]
 
 # GET /users
   # GET /users.json
-  def index
-    @posts = Post.all
-  end
+#   def index
+#     @posts = Post.all
+#   end
 
   # GET /users/1
   # GET /users/1.json

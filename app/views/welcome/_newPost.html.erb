@@ -1,10 +1,9 @@
 <div class="row new_posts">
     <!-- post -->
-
     <% @new_posts.each do |item| %>
         <div class="col-md-6">
             <div class="post post-thumb">
-                <a class="post-img" href="/post/<%= item.id%>">
+                <a class="post-img" href="/posts/<%= item.id%>">
                     <img src="<%=item.image%>" alt=""></a>
                 <div class="post-body">
                     <div class="post-meta">
@@ -12,7 +11,7 @@
                         <span class="post-date">March 27, 2018</span>
                     </div>
                     <h3 class="post-title">
-                        <a href="/post/<%= item.id%>"><%=item.title%></a>
+                        <a href="/posts/<%= item.id%>"><%=item.title%></a>
                     </h3>
                 </div>
             </div>
