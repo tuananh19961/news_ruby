@@ -52,3 +52,18 @@
     text-align: justify;
     line-height: 1.5;
 }
+.post.post-thumb .post-body{
+    width: 100%;
+}
+
+@media (max-width:468px){
+    .post.post-thumb .post-body{
+        padding: 10px 15px !important;
+    }
+    .post.post-thumb .post-title{
+        font-size: 16px !important;
+    }
+    .post.post-thumb .post-title > a{
+        height: 35px !important;
+    }
+}

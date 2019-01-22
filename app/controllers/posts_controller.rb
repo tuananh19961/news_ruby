@@ -25,7 +25,9 @@ before_action :set_post, only: [:show,:edit]
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.find_by(id: params[:id])
+      return if @post
+      flash[:danger] =" nil"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
