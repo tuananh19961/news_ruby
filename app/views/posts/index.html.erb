@@ -1,0 +1,37 @@
+<div class="container">
+    
+    <h1>DANH SÁCH BÀI ĐĂNG</h1>
+        <a href="/posts/new" class="btn btn-success"><i class="fa fa-plus-square mr-5"></i> Thêm mới</a>
+        <table class="table-striped table-bordered dt-responsive" id="static-table" data-page-length='4'  cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th width="100">ID</th>
+                    <th width="100">Hình ảnh</th>
+                    <th width="100">Danh mục</th>
+                    <th>Tiêu đề</th>
+                    <th>Nội dung</th>
+                    <th width="100">Ngày tạo</th>
+                    <th width="100">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @posts.each do |item| %>
+                <tr>
+                    <td><%= item.id %></td>
+                    <td><img src="<%= item.image %>" height="50px" class="img-responsive img-post"/></td>
+                    <td><%= item.category.name %></td>
+                    <td><%= item.title %></td>
+                    <td><%= truncate(item.content, length: 100) %></td>
+                    <td><%= item.created_at %></td>
+                    <td>
+                    <%= link_to 'Xóa', item, method: :delete, data: { confirm: 'Are you sure?' }%>
+                    <i class="devide"></i>
+                    <%= link_to 'Chi tiết', item %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    <br>
+</div>

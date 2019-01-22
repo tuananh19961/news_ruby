@@ -3,9 +3,9 @@ before_action :set_post, only: [:show,:edit]
 
 # GET /users
   # GET /users.json
-#   def index
-#     @posts = Post.all
-#   end
+  def index
+    @posts = Post.joins(:category).order('posts.id ASC')
+  end
 
   # GET /users/1
   # GET /users/1.json
@@ -13,25 +13,41 @@ before_action :set_post, only: [:show,:edit]
   end
 
 #   # GET /users/new
-#   def new
-#     @user = Post.new
-#   end
+  def new
+    @user = Post.new
+    @category = Category.all
+  end
 
   # GET /users/1/edit
   def edit
   end
 
+ # DELETE /users/1
+  # DELETE /users/1.json
+  def destroy
+    @post.destroy
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+# POST /users
+  # POST /users.json
+  def create
+    @post = Post.new(post_params)
+    @post.save
+  end
 
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find_by(id: params[:id])
-      return if @post
-      flash[:danger] =" nil"
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    # def user_params
-    #   params.require(:user).permit(:name, :email, :password)
-    # end
+    def post_params
+      params.require(:post).permit(:title, :category_id, :content,:image)
+    end
 end

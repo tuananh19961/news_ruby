@@ -15,5 +15,7 @@
 //= require rails-ujs
 //= require bootstrap
 //= require turbolinks
+//= require quill.min
+//= require quill.global
 //= require_tree .
 

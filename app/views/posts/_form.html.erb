@@ -1,0 +1,27 @@
+<%= form_with model: Post.new do |form| %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :category_id %>
+    <%= form.select :category_id, Category.all.collect {|c| [ c.name, c.id ] }, {include_blank: "--- Danh mục ---"}, { :class => 'form-control' }%>
+  </div>
+
+  <div class="form-group post-content">
+    <%= form.label :content %>
+    <%= form.text_field :content, label: 'Title', type: 'text', class: 'quill_container', rows: 10 %> 
+  </div>
+
+  <div class="form-group">
+    <%= form.label :image %>
+    <%= form.text_field :image, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save", class: 'btn btn-warning'%>
+  </div>
+
+<% end %>

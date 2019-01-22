@@ -2,6 +2,15 @@
 	"use strict"
 
 	// Fixed Nav
+	$(document).ready( function () {
+		$('#static-table').DataTable({
+			"bPaginate": true,
+			"bSort": false,
+			"responsive": true,
+			"lengthChange": false
+		});
+	} );
+	
 	var lastScrollTop = 0;
 	$(window).on('scroll', function() {
 		var wScroll = $(this).scrollTop();
