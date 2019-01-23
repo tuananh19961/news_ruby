@@ -85,3 +85,6 @@ table.table-bordered tbody th, table.table-bordered tbody td{
 .page-header h1{
     font-size: 25px !important;
 }
+.ql-align-center{
+    text-align: center;
+}

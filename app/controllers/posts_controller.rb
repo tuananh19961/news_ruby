@@ -14,8 +14,8 @@ before_action :set_post, only: [:show,:edit]
 
 #   # GET /users/new
   def new
-    @user = Post.new
     @category = Category.all
+    @post = Post.new
   end
 
   # GET /users/1/edit
@@ -36,7 +36,14 @@ before_action :set_post, only: [:show,:edit]
   # POST /users.json
   def create
     @post = Post.new(post_params)
-    @post.save
+
+    if  @post.save
+      flash[:success] = "Thêm bài viết thành công!"
+      redirect_to :action => 'new'
+    else
+      render :action => 'new'
+    end
+
   end
 
     private
