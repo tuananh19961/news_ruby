@@ -66,6 +66,9 @@
     .post.post-thumb .post-title > a{
         height: 35px !important;
     }
+    .ql-align-center img{
+        width: 100%;
+    }
 }
 
 table.dataTable.dtr-inline.collapsed tbody td:first-child:before, table.dataTable.dtr-inline.collapsed tbody th:first-child:before{
@@ -87,6 +90,11 @@ table.table-bordered tbody th, table.table-bordered tbody td{
 }
 .ql-align-center{
     text-align: center;
+    overflow: hidden;
+}
+.ql-align-center img{
+    object-fit: cover;
+    object-position: center;
 }
 .nav-btns > a{
     color: #3d455c;
@@ -122,4 +130,9 @@ table.table-bordered tbody th, table.table-bordered tbody td{
     color: #aaa;
     margin-top: 0;
     display: inline;
+}
+.page-header .page-header-breadcrumb{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

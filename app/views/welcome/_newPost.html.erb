@@ -9,7 +9,7 @@
                 <div class="post-body">
                     <div class="post-meta">
                         <a class="post-category cat-<%=item.category.id%>" href="category.html"><%=item.category.name%></a>
-                        <span class="post-date"><%= item.created_at%></span>
+                        <span class="post-date"><%= item.created_at.strftime('%d-%m-%Y %H:%M')%></span>
                     </div>
                     <h3 class="post-title">
                         <a href="/posts/<%= item.id%>"><%=item.title%></a>

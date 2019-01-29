@@ -9,7 +9,7 @@
                     <li><%= @post.title%></li>
                 </ul>
                 <h1><%= @post.title %></h1>
-                <h5 class="time"><%= @post.created_at %></h5>
+                <h5 class="time"><%= @post.created_at.strftime('%F %T') %></h5>
             </div>
         </div>
     </div>
