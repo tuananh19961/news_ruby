@@ -1,38 +1,109 @@
 <div class="page-header">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<ul class="page-header-breadcrumb">
-								<li><a href="/">Trang chủ</a></li>
-								<li><%= @post.title%></li>
-							</ul>
-							<h1><%= @post.title %></h1>
-                            
-						</div>
-					</div>
-				</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="page-header-breadcrumb">
+                    <li>
+                        <a href="/">Trang chủ</a>
+                    </li>
+                    <li><%= @post.title%></li>
+                </ul>
+                <h1><%= @post.title %></h1>
+                <h5 class="time"><%= @post.created_at %></h5>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-                        <p class="text-center">
-                            <img src="<%= @post.image %>" class="img-responsive" style="display:inline-block"/>
-                        </p>
-						
-                        <p class="post_content">
-                            <%= @post.content.html_safe %>
-                        </p>
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center">
+                    <img
+                        src="<%= @post.image %>"
+                        class="img-responsive"
+                        style="display:inline-block"/>
+                </p>
 
-                        <p class="pull-right">
-                            <b>Admin</b>
-                        </p>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
+                <p class="post_content">
+                    <%= @post.content.html_safe %>
+                </p>
+
+                <p class="pull-right">
+                    <b>Admin</b>
+                </p>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="comments">
+
+                    <div class="section-title">
+                        <h2>Bình luận</h2>
+                    </div>
+
+                    <div class="list_comment">
+                        <ul class="comments-list">
+
+                            <% @comments.each do |item| %>
+                            <li class="comment">
+                                <div class="comment-body">
+                                    <div class="comment-heading">
+                                        <h4 class="user"><%= item.user.username%></h4>
+                                        <h5 class="time"><%= item.created_at%></h5>
+                                    </div>
+                                    <p><%= item.content%></p>
+                                </div>
+                            </li>
+                            <% end %>
+
+                        </ul>
+                    </div>
+
+                    <div class="form_comment">
+                        <% if user_signed_in? %>
+
+                        <%# Kiểm tra user đã bình luận bài viết rồi! %>
+                        <% if Comment.where(:user_id => current_user.id, :post_id => @post.id).exists?%>
+                            <div class="text-center" style="margin-top: 40px;">
+                                <h3 class="label label-danger" style="font-size:15px;">Bạn đã bình luận bài viết này!</h3>
+                            </div>
+                        <% else %>
+
+                        <%# Hiện form bình luận khi user chưa từng bình luận! %>
+                        <%= form_with(model: Comment.new, local: true) do |form| %>
+                            <%= form.hidden_field  :user_id, id: :comment_user_id, value: current_user.id %>
+                            <%= form.hidden_field  :post_id, id: :comment_post_id, value: @post.id %>
+                            <div class="form-group post-content">
+                                <%= form.text_area :content, id: :comment_content, class: 'form-control
+                                content', placeholder: 'Nhập bình luận', required: true %>
+                            </div>
+                            <div class="actions">
+                                <%= form.button '', { class: 'btn btn-success'} do %>
+                                <i class="fa fa-paper-plane"></i>
+                                Gửi
+                                <% end %>
+                            </div>
+                        <% end %>
+                        <% end %>
+
+                        <%# Chua login %>
+                        <% else %>
+                        <div class="text-center" style="margin-top: 40px;">
+                            <p class="label label-danger" style="font-size:15px">Bạn cần đăng nhập để bình luận bài viết!</p> 
+                        </div>
+                        <% end %>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>

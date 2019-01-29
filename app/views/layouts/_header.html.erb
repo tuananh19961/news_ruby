@@ -22,6 +22,23 @@
                         <button class="search-btn">
                             <i class="fa fa-search"></i>
                         </button>
+                        <%if user_signed_in? %>
+                         <a target="_blank" href="/posts" class="search-btn">
+                            <i class="fa fa-user"></i>
+                            <%= current_user.username%>
+                        </a>
+                        <i class="devide"></i>
+                             <%= link_to destroy_user_session_path, method: :delete, class: "search-btn log-out" do %>
+                                <i class="fa fa-sign-out"></i>
+                                Đăng xuất
+                             <%end%>
+                        <%else%>
+                         <a href="/sign-in" class="search-btn">
+                            <i class="fa fa-sign-in"></i>
+                            Đăng nhập
+                        </a>
+
+                        <% end %>
                         <div class="search-form">
                             <input
                                 class="search-input"

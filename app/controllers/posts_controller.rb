@@ -1,15 +1,18 @@
 class PostsController < ApplicationController
+
 before_action :set_post, only: [:show,:edit]
+# before_action :authenticate_user! 
 
 # GET /users
   # GET /users.json
   def index
-    @posts = Post.joins(:category).order('posts.id ASC')
+    @posts = Post.includes(:category).order('posts.id ASC')
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @comments = Comment.includes(:user).where(:post_id => params[:id])
   end
 
 #   # GET /users/new
@@ -41,7 +44,10 @@ before_action :set_post, only: [:show,:edit]
       flash[:success] = "Thêm bài viết thành công!"
       redirect_to :action => 'new'
     else
-      render :action => 'new'
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
 
   end
@@ -50,11 +56,10 @@ before_action :set_post, only: [:show,:edit]
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find_by(id: params[:id])
-
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :category_id, :content,:image)
+      params.require(:post).permit(:title, :category_id, :content, :image)
     end
 end

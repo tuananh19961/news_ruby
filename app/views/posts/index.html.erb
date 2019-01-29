@@ -22,7 +22,7 @@
                     <td><img src="<%= item.image %>" height="50px" class="img-responsive img-post"/></td>
                     <td><%= item.category.name %></td>
                     <td><%= item.title %></td>
-                    <td><%= truncate(item.content, length: 100) %></td>
+                    <td><%= truncate(item.content.html_safe, length: 100) %></td>
                     <td><%= item.created_at %></td>
                     <td>
                     <%= link_to 'Xóa', item, method: :delete, data: { confirm: 'Are you sure?' }%>

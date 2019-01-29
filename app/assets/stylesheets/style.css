@@ -520,10 +520,11 @@ RESPONSIVE
  .post .post-img {
      display: block;
      -webkit-transition: 0.2s opacity;
-     transition: 0.2s opacity;
+     transition: 0.2s all;
 }
- .post .post-img:hover, .post .post-img:focus {
+ .post:hover .post-img, .post:focus .post-img {
      opacity: 0.9;
+     transform: scale(1.05);
 }
  .post .post-img > img {
      width: 100%;

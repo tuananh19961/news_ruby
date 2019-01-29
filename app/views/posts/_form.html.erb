@@ -1,23 +1,33 @@
 <%= form_with model: post, local: true, html: { multipart: true } do |form| %>
 
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, class: 'form-control' %>
+    <%= form.text_field :title, class: 'form-control', :required => true %>
   </div>
 
     <div class="form-group">
     <%= form.label :category_id %>
-    <%= form.select :category_id, Category.all.collect {|c| [ c.name, c.id ] }, {include_blank: "--- Danh mục ---"}, { :class => 'form-control' }%>
+    <%= form.select :category_id, Category.all.collect {|c| [ c.name, c.id ] },{}, class: 'form-control'%>
   </div>
 
   <div class="form-group post-content">
     <%= form.label :content %>
-    <%= form.text_field :content, label: 'Title', type: 'text', class: 'quill_container', rows: 10 %> 
+    <%= form.text_field :content, label: 'Title', type: 'text', class: 'quill_container', :required => true %> 
   </div>
 
   <div class="form-group">
     <%= form.label :image %>
-    <%= form.file_field :image, class: 'form-control', id: "avatar-upload" %>
+    <%= form.file_field :image, class: 'form-control', id: "avatar-upload", :required => true %>
     <%= form.hidden_field :image_cache %>
     <img id="img_prev" style="width: auto; height:200px" src="#" alt="your image" class="img-thumbnail hidden"/> <br/>
   </div>
@@ -25,5 +35,7 @@
   <div class="actions">
     <%= form.submit "Save", class: 'btn btn-warning'%>
   </div>
+
+<%# {include_blank: "--- Danh mục ---"} %>
 
 <% end %>
